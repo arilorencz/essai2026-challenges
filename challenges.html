@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ESSAI 2026 — Industry Challenges</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --ink: #101828;
+    --muted: #667085;
+    --line: #e5e7eb;
+    --accent: #1f4bd8;
+    --accent-soft: #eef2ff;
+    --tag-bg: #f2f4f7;
+    --tag-ink: #344054;
+    --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06);
+    --radius: 14px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header.page-header {
+    background: linear-gradient(180deg, #ffffff 0%, #f6f7f9 100%);
+    border-bottom: 1px solid var(--line);
+    padding: 56px 24px 40px;
+    text-align: center;
+  }
+
+  header.page-header .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  header.page-header h1 {
+    margin: 0 0 12px;
+    font-size: clamp(28px, 4vw, 40px);
+    letter-spacing: -0.02em;
+  }
+
+  header.page-header p {
+    margin: 0 auto;
+    max-width: 640px;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+    align-items: center;
+  }
+
+  .filter-bar .label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-right: 6px;
+  }
+
+  .filter-bar button {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--tag-ink);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+
+  .filter-bar button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .filter-bar button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+  }
+
+  article.card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  article.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 24, 40, 0.06), 0 16px 40px rgba(16, 24, 40, 0.08);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .card h2 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+
+  .card .industry {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--tag-bg);
+    color: var(--tag-ink);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .tag.accent {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .section {
+    margin-bottom: 18px;
+  }
+
+  .section h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin: 0 0 6px;
+    font-weight: 600;
+  }
+
+  .section p,
+  .section li {
+    margin: 0;
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  .section ul {
+    padding-left: 18px;
+    margin: 0;
+  }
+
+  .section ul li + li {
+    margin-top: 4px;
+  }
+
+  .description {
+    font-size: 14px;
+    color: var(--ink);
+    margin: 0 0 20px;
+  }
+
+  details {
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+    margin-top: auto;
+  }
+
+  details summary {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+  }
+
+  details summary::-webkit-details-marker { display: none; }
+
+  details summary::after {
+    content: "▾";
+    transition: transform 0.2s ease;
+    font-size: 10px;
+  }
+
+  details[open] summary::after {
+    transform: rotate(180deg);
+  }
+
+  details .details-body {
+    padding-top: 16px;
+  }
+
+  .contact {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+
+  .contact strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .contact a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .contact a:hover { text-decoration: underline; }
+
+  .website-link {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .website-link:hover { text-decoration: underline; }
+
+  .refs {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .refs li { margin-bottom: 6px; }
+
+  footer.page-footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--line);
+    background: #fff;
+  }
+
+  @media (max-width: 640px) {
+    header.page-header { padding: 40px 20px 32px; }
+    main { padding: 32px 16px 60px; }
+    article.card { padding: 24px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="eyebrow">ESSAI 2026 · Industry Challenges</div>
+  <h1>Partner Challenges</h1>
+  <p>Explore the industry challenges presented by our partner organisations. Each card summarises the problem, the domain, the intended outcome, and what participants will gain.</p>
+</header>
+
+<main>
+  <div class="filter-bar" id="filterBar">
+    <span class="label">Filter by domain:</span>
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="manufacturing">Manufacturing</button>
+    <button data-filter="sustainability">Sustainability</button>
+    <button data-filter="bpm">Business Process Management</button>
+    <button data-filter="physical-ai">Physical AI</button>
+    <button data-filter="governance">AI Governance</button>
+  </div>
+
+  <div class="grid" id="cardGrid">
+
+    <!-- ===================== OPTIKONF ===================== -->
+    <article class="card" data-domains="manufacturing sustainability">
+      <div class="card-header">
+        <div>
+          <h2>OptiKonf FlexCo</h2>
+          <div class="industry">Manufacturing · Symbolic AI Configurators</div>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag accent">Use Case</span>
+        <span class="tag accent">Technical Problem</span>
+        <span class="tag">Manufacturing</span>
+        <span class="tag">Sustainability</span>
+      </div>
+
+      <p class="description">
+        OptiKonf's platform uses Symbolic AI to turn complex, non-standard specifications (including imperative code) into configurators. The challenge is to integrate <strong>agentic coding</strong> into this workflow so that domain experts can build configurators without also being platform experts, while staying anchored to the symbolic back-end for compilation and execution feedback.
+      </p>
+
+      <div class="section">
+        <h3>Intended Outcome</h3>
+        <p>Ideas for extending the Symbolic Platform into a Hybrid AI system — ideally small prototypes.</p>
+      </div>
+
+      <div class="section">
+        <h3>Prior Knowledge</h3>
+        <p>Basic programming skills and comfort with API calls are sufficient.</p>
+      </div>
+
+      <div class="section">
+        <h3>What Students Gain</h3>
+        <ul>
+          <li>Compute credit for the OptiKonf Symbolic Configurator</li>
+          <li>Possible internships at a future startup stage</li>
+          <li>Joint publication if synergies arise</li>
+        </ul>
+      </div>
+
+      <details>
+        <summary>Show full challenge</summary>
+        <div class="details-body">
+          <div class="section">
+            <h3>Full Description</h3>
+            <p>OptiKonf's platform uses Symbolic AI to process complex specifications precisely, even when given in non-standard input formats. It can process imperative code (e.g., a sub-set of Python syntax) and transform it into configurators — crucial for processing existing configurators found in many companies. While this makes symbolic AI accessible to programming experts, OptiKonf strives to build an even more accessible platform.</p>
+            <p style="margin-top: 8px;">The company is researching agentic programming workflows (e.g., external APIs with user-supplied keys, or budgets bought through the platform) that still exploit the symbolic back-end. Generated Python source can always be processed to extract selectable configurator "knobs", optimisation targets, dead code, etc. This information should be exposed to the agentic coding loop, so users are never "vibing into the void" but stay connected to the domain problem they are modelling — able to ask the agent questions while it calls the platform in the background to compile code and execute configurators.</p>
+            <p style="margin-top: 8px;">Participants receive API access to the platform and personalised guidance throughout. The team supports any problems that arise and values feedback. Deployment is handled by OptiKonf — the challenge focuses on collectively gathering experience and seeing how far the group can push the workflow.</p>
+          </div>
+
+          <div class="section">
+            <h3>Data & Resources</h3>
+            <ul>
+              <li>API keys for the OptiKonf platform provided</li>
+              <li>No confidentiality required (isolated tenant)</li>
+              <li>Outputs may be shared publicly</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>Company</h3>
+            <p>Kleinstunternehmen · 2 employees, 2 founders · Linz, Austria</p>
+            <a class="website-link" href="https://optikonf.com" target="_blank" rel="noopener">optikonf.com ↗</a>
+          </div>
+
+          <div class="contact">
+            <div><strong>Max Heisinger</strong> — CEO / CTO</div>
+            <div><a href="mailto:max@optikonf.com">max@optikonf.com</a></div>
+          </div>
+        </div>
+      </details>
+    </article>
+
+    <!-- ===================== SAP ===================== -->
+    <article class="card" data-domains="bpm">
+      <div class="card-header">
+        <div>
+          <h2>SAP</h2>
+          <div class="industry">Enterprise Software · ERP · Signavio</div>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag accent">Research Problem</span>
+        <span class="tag accent">Open Discussion</span>
+        <span class="tag">Business Process Management</span>
+        <span class="tag">Simulation</span>
+      </div>
+
+      <p class="description">
+        Business process simulation is meant to provide decision support for change decisions, but current approaches — classical stochastic models, ML-integrated methods, declarative or agent-based simulation — still fall short of the accuracy needed in practice. The challenge is to <strong>close the accuracy gap</strong>, potentially by drawing from other AI research areas, especially as agents take on greater roles in executing processes.
+      </p>
+
+      <div class="section">
+        <h3>Intended Outcome</h3>
+        <p>Ideas and discussion advancing the underlying research.</p>
+      </div>
+
+      <div class="section">
+        <h3>What Students Gain</h3>
+        <ul>
+          <li>Promising directions can be taken further through SAP's <strong>Visiting Researcher Program</strong> (up to 6 months)</li>
+          <li>Access to dedicated infrastructure for prototypes in production-like environments</li>
+        </ul>
+      </div>
+
+      <details>
+        <summary>Show full challenge</summary>
+        <div class="details-body">
+          <div class="section">
+            <h3>Full Description</h3>
+            <p>SAP builds software that helps companies run well. The Signavio business unit provides a process intelligence product suite as part of SAP's business transformation capabilities. Signavio operates at the level where businesses are actually run — the process level — offering tools and knowledge to get insights into how processes run and adapt them to drive change. Over 50 years, SAP has accumulated knowledge of potential process improvements, but whether a specific improvement will work in a given organisational reality requires decision support beyond this knowledge alone.</p>
+            <p style="margin-top: 8px;">Business process simulation provides that decision support by learning a simulation model from historical execution data and modifying it to reflect hypothetical changes — enabling what-if analyses before committing to redesigns, automation, or resource reallocation. In practice, however, these approaches still do not produce simulations accurate enough to rely on.</p>
+            <p style="margin-top: 8px;">A core reason is that the data used to discover simulations does not capture everything driving process execution: processes are variable because humans execute them, and they are shaped by external context (workload, customer behaviour, supplier delays, organisational dynamics) that is only partially recorded in the ERP. Promising directions include integrating context from outside the ERP, modelling resource behaviour under varying conditions, and quantifying how trustworthy a simulation result is — through new paradigms or hybridisations.</p>
+            <p style="margin-top: 8px;">The relevance grows as agents take a more central role: SAP's active research on agentic process management explores autonomous agents, and sufficiently accurate simulation is key to understanding their behaviour and consequences in advance.</p>
+          </div>
+
+          <div class="section">
+            <h3>Data & Resources</h3>
+            <p>Openly available process logs at <a class="website-link" href="https://www.tf-pm.org/resources/logs" target="_blank" rel="noopener">tf-pm.org/resources/logs ↗</a> paired with the state-of-the-art references below.</p>
+            <ul class="refs" style="margin-top: 8px;">
+              <li>Kirchdorfer et al. (2025). <em>Discovering multi-agent systems for resource-centric business process simulation.</em> Process Science, 2(1), 4.</li>
+              <li>Chapela-Campa et al. (2025). <em>SIMOD: automated discovery of business process simulation models.</em> SoftwareX, 30, 102157.</li>
+              <li>Camargo et al. (2023). <em>Learning business process simulation models: a hybrid process mining and deep learning approach.</em> Information Systems, 117, 102248.</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>Company</h3>
+            <a class="website-link" href="https://www.sap.com" target="_blank" rel="noopener">sap.com ↗</a>
+          </div>
+
+          <div class="contact">
+            <div><strong>Robert Blümel</strong> — Research & Innovation at SAP</div>
+            <div><a href="mailto:robert.bluemel@sap.com">robert.bluemel@sap.com</a></div>
+          </div>
+        </div>
+      </details>
+    </article>
+
+    <!-- ===================== ALGORYX & CLEAIR ===================== -->
+    <article class="card" data-domains="physical-ai governance">
+      <div class="card-header">
+        <div>
+          <h2>Algoryx &amp; cleAIr</h2>
+          <div class="industry">Physical AI &amp; Simulation · AI Governance (WASP)</div>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag accent">Open Discussion</span>
+        <span class="tag accent">Research Problem</span>
+        <span class="tag accent">Technical Problem</span>
+        <span class="tag">Physical AI</span>
+        <span class="tag">Multi-agent Systems</span>
+        <span class="tag">Governance</span>
+      </div>
+
+      <p class="description">
+        AI systems are evolving from isolated models into interacting ecosystems of autonomous agents, humans, digital infrastructure, and physical environments. Risk emerges from the whole system, not a single model. This joint challenge asks how we can <strong>measure, predict, and govern the effects of changes</strong> in adaptive systems operating in the physical world — from autonomous construction sites to space systems.
+      </p>
+
+      <div class="section">
+        <h3>Intended Outcome</h3>
+        <p>Ideas and discussion.</p>
+      </div>
+
+      <div class="section">
+        <h3>Guiding Questions</h3>
+        <ul>
+          <li>How do we preserve physical consistency as AI becomes part of simulation and control?</li>
+          <li>How can we measure and explain the effects of changes in adaptive multi-agent systems?</li>
+          <li>How do we distinguish intended effects from emergent side effects when agents interact with humans and the physical world?</li>
+          <li>How can we ensure safety, stability, and verifiability in autonomous machines, construction, and space systems?</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>What Students Gain</h3>
+        <ul>
+          <li>Joint publication</li>
+        </ul>
+      </div>
+
+      <details>
+        <summary>Show full challenge</summary>
+        <div class="details-body">
+          <div class="section">
+            <h3>Full Description</h3>
+            <p>AI systems are evolving from isolated models into interacting ecosystems of autonomous agents, humans, digital infrastructure, and physical environments. Risk is no longer located solely inside a single model — it emerges from the behaviour of the system as a whole, including how software agents, physical systems, and people interact over time.</p>
+            <p style="margin-top: 8px;">Consider an autonomous construction site where multiple machines collaborate with human operators to move material. Every decision changes the environment itself: terrain is reshaped, materials move, traffic patterns evolve, and new decisions must adapt to the updated world. New safety rules, optimisation objectives, or operating policies influence how autonomous agents coordinate. Small changes to either the physical models or the governing rules may produce system-wide effects that are difficult to anticipate.</p>
+            <p style="margin-top: 8px;">Building trustworthy autonomous systems requires understanding both the physical processes and the interactions between multiple adaptive agents. Physics-based digital twins provide realistic virtual environments for training and validating autonomous machines, while observability and governance methods help us understand how changes to rules, incentives, or control strategies affect overall system behaviour. Together, these perspectives aim to provide confidence that autonomous systems remain safe and stable as they continuously adapt.</p>
+            <p style="margin-top: 8px;">The challenge sits at the intersection of Physical AI, physics-based simulation, multi-agent systems, and AI governance, and is presented jointly by Algoryx and cleAIr under the WASP umbrella.</p>
+          </div>
+
+          <div class="section">
+            <h3>Domains</h3>
+            <p>Physical AI · Physics-based simulation · Multi-agent systems · AI observability &amp; governance · Autonomous machines · Construction · Space systems</p>
+          </div>
+
+          <div class="section">
+            <h3>Data &amp; Resources</h3>
+            <ul>
+              <li>Data: No</li>
+              <li>Examples: Yes</li>
+              <li>Supporting materials: No</li>
+              <li>No confidentiality or IP constraints</li>
+              <li>Outputs may be shared publicly</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>Companies</h3>
+            <p><strong>Algoryx</strong> — Physical AI &amp; Simulation · <a class="website-link" href="https://algoryx.se" target="_blank" rel="noopener">algoryx.se ↗</a></p>
+            <p style="margin-top: 6px;"><strong>cleAIr</strong> — IT Research · <a class="website-link" href="https://cleair.ai" target="_blank" rel="noopener">cleair.ai ↗</a></p>
+          </div>
+
+          <div class="contact">
+            <div><strong>Sandra Ålstig</strong> — Senior R&amp;D Engineer, Algoryx</div>
+            <div><a href="mailto:sandra.alstig@algoryx.com">sandra.alstig@algoryx.com</a></div>
+            <div style="margin-top: 8px;"><strong>Filip Naudot</strong> — R&amp;D Engineer, cleAIr</div>
+            <div><a href="mailto:filip.naudot@gmail.com">filip.naudot@gmail.com</a></div>
+          </div>
+        </div>
+      </details>
+    </article>
+
+  </div>
+</main>
+
+<footer class="page-footer">
+  ESSAI 2026 · Industry Challenges — for participating students
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('#filterBar button');
+  const cards = document.querySelectorAll('#cardGrid .card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        const domains = (card.dataset.domains || '').split(' ');
+        card.style.display = (filter === 'all' || domains.includes(filter)) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
