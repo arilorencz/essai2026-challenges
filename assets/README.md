@@ -1,24 +1,31 @@
 # Logo assets
 
-Drop image files here with the exact filenames below. PNG (transparent background) or SVG both work; `.png` is what the HTML currently references — rename accordingly if you use SVG.
+Logos referenced by `challenges.html`. Sourced from the ESSAI 2026 site (https://essai2026.eu/organization.php).
 
-## Header (top of page)
+## Header (top of page) — 64 px
 
-| Filename            | Used for               | Rendered height |
-| ------------------- | ---------------------- | --------------- |
-| `essai-logo.png`    | ESSAI 2026 logo        | 64 px           |
+| File               | Used for            |
+| ------------------ | ------------------- |
+| `essai-logo.png`   | ESSAI 2026 event logo |
 
-To add more ESSAI/partner logos to the header strip, edit `challenges.html` and add another `<img>` inside `<div class="logo-strip">`.
+## Footer sponsors — 44 px
 
-## Footer (bottom of page)
+| File                          | Sponsor / Partner              |
+| ----------------------------- | ------------------------------ |
+| `eurai.svg`                   | EurAI                          |
+| `tu-wien.png`                 | TU Wien                        |
+| `wu-wien.svg`                 | WU Wien                        |
+| `aij.jpg`                     | AI Journal                     |
+| `bilateral-ai.png`            | Bilateral AI                   |
+| `asai.png`                    | ASAI                           |
+| `erste-bank.png`              | Erste Bank                     |
+| `graphwise.svg`               | Graphwise                      |
+| `city-of-vienna.svg`          | City of Vienna                 |
+| `hostel-ruthensteiner.png`    | Hostel Ruthensteiner           |
+| `secai.png`                   | SECAI                          |
+| `mdv.jpg`                     | Meeting Destination Vienna     |
+| `fwf.svg`                     | Austrian Science Fund (FWF)    |
 
-| Filename       | Used for            | Rendered height |
-| -------------- | ------------------- | --------------- |
-| `tu-wien.png`  | TU Wien host logo   | 44 px           |
+## Adding / removing logos
 
-To add more sponsors, edit `challenges.html` and add another `<img>` inside `<div class="sponsor-strip">`.
-
-## Notes
-
-- Prefer transparent PNGs at 2x their rendered height (e.g. 128 px tall) or SVG for crispness on high-DPI screens.
-- The `object-fit: contain` CSS keeps aspect ratio, so any reasonable dimensions will fit.
+Edit `challenges.html` — add or remove `<img>` tags inside `<div class="sponsors-logos">` (footer) or `<div class="logo-strip">` (header). CSS keeps every image at a consistent height with `object-fit: contain`, so any reasonable dimensions will fit.

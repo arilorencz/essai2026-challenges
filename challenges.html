@@ -300,26 +300,38 @@
     background: #fff;
   }
 
-  footer.page-footer .sponsor-strip {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
+  footer.page-footer .sponsors {
+    max-width: 1080px;
+    margin: 0 auto 28px;
   }
 
-  footer.page-footer .sponsor-strip .sponsor-label {
+  footer.page-footer .sponsors-label {
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     color: var(--muted);
+    margin-bottom: 20px;
   }
 
-  footer.page-footer .sponsor-strip img {
+  footer.page-footer .sponsors-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 28px 40px;
+  }
+
+  footer.page-footer .sponsors-logos img {
     height: 44px;
     width: auto;
+    max-width: 160px;
     object-fit: contain;
+    opacity: 0.85;
+    transition: opacity 0.15s ease;
+  }
+
+  footer.page-footer .sponsors-logos img:hover {
+    opacity: 1;
   }
 
   footer.page-footer .footer-note {
@@ -665,9 +677,23 @@
 </main>
 
 <footer class="page-footer">
-  <div class="sponsor-strip">
-    <span class="sponsor-label">Hosted by</span>
-    <img src="assets/tu-wien.png" alt="TU Wien" />
+  <div class="sponsors">
+    <div class="sponsors-label">Sponsors &amp; Partners</div>
+    <div class="sponsors-logos">
+      <img src="assets/eurai.svg" alt="EurAI" />
+      <img src="assets/tu-wien.png" alt="TU Wien" />
+      <img src="assets/wu-wien.svg" alt="WU Wien" />
+      <img src="assets/aij.jpg" alt="AI Journal" />
+      <img src="assets/bilateral-ai.png" alt="Bilateral AI" />
+      <img src="assets/asai.png" alt="ASAI" />
+      <img src="assets/erste-bank.png" alt="Erste Bank" />
+      <img src="assets/graphwise.svg" alt="Graphwise" />
+      <img src="assets/city-of-vienna.svg" alt="City of Vienna" />
+      <img src="assets/hostel-ruthensteiner.png" alt="Hostel Ruthensteiner" />
+      <img src="assets/secai.png" alt="SECAI" />
+      <img src="assets/mdv.jpg" alt="Meeting Destination Vienna" />
+      <img src="assets/fwf.svg" alt="Austrian Science Fund (FWF)" />
+    </div>
   </div>
   <div class="footer-note">ESSAI 2026 · Industry Challenges — for participating students</div>
 </footer>
