@@ -11,6 +11,11 @@ A static microsite that displays the partner industry challenges for the ESSAI 2
 - **OptiKonf FlexCo** — Manufacturing / Symbolic AI configurators
 - **SAP** — Business process simulation (Signavio)
 - **Algoryx & cleAIr** — Physical AI, multi-agent systems, AI governance (WASP)
+- **Graphwise** — Hybrid AI, knowledge graphs, ontology optimisation for LLMs
+
+## Logos
+
+Logo files live in [`assets/`](assets/) — see [`assets/README.md`](assets/README.md) for the expected filenames.
 
 ## Local preview
 

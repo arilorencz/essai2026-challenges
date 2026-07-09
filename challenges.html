@@ -35,8 +35,23 @@
   header.page-header {
     background: linear-gradient(180deg, #ffffff 0%, #f6f7f9 100%);
     border-bottom: 1px solid var(--line);
-    padding: 56px 24px 40px;
+    padding: 40px 24px 40px;
     text-align: center;
+  }
+
+  header.page-header .logo-strip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  header.page-header .logo-strip img {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
   }
 
   header.page-header .eyebrow {
@@ -281,10 +296,35 @@
   footer.page-footer {
     text-align: center;
     padding: 32px 24px;
-    color: var(--muted);
-    font-size: 13px;
     border-top: 1px solid var(--line);
     background: #fff;
+  }
+
+  footer.page-footer .sponsor-strip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+
+  footer.page-footer .sponsor-strip .sponsor-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  footer.page-footer .sponsor-strip img {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  footer.page-footer .footer-note {
+    color: var(--muted);
+    font-size: 13px;
   }
 
   @media (max-width: 640px) {
@@ -298,6 +338,9 @@
 <body>
 
 <header class="page-header">
+  <div class="logo-strip">
+    <img src="assets/essai-logo.png" alt="ESSAI 2026" />
+  </div>
   <div class="eyebrow">ESSAI 2026 · Industry Challenges</div>
   <h1>Partner Challenges</h1>
   <p>Explore the industry challenges presented by our partner organisations. Each card summarises the problem, the domain, the intended outcome, and what participants will gain.</p>
@@ -312,6 +355,7 @@
     <button data-filter="bpm">Business Process Management</button>
     <button data-filter="physical-ai">Physical AI</button>
     <button data-filter="governance">AI Governance</button>
+    <button data-filter="knowledge-graphs">Knowledge Graphs</button>
   </div>
 
   <div class="grid" id="cardGrid">
@@ -542,11 +586,90 @@
       </details>
     </article>
 
+    <!-- ===================== GRAPHWISE ===================== -->
+    <article class="card" data-domains="knowledge-graphs">
+      <div class="card-header">
+        <div>
+          <h2>Graphwise</h2>
+          <div class="industry">AI · Knowledge Graphs · Enterprise Search &amp; Analytics</div>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag accent">Technical Problem</span>
+        <span class="tag accent">Hybrid AI</span>
+        <span class="tag">Knowledge Graphs</span>
+        <span class="tag">Semantic AI</span>
+      </div>
+
+      <p class="description">
+        <strong>Hybrid AI Optimisation Challenge: Simplifying Ontologies for LLMs.</strong> Complex ontologies (e.g., the CIM electrical-grid standard with 900+ classes and 5,500+ properties) create excessive token overhead for LLMs generating SPARQL. The challenge is to make ontologies <strong>LLM-friendly</strong> — via subsetting to actually-instantiated classes and properties — without sacrificing precision, so agentic AI solutions can be deployed in days rather than quarters.
+      </p>
+
+      <div class="section">
+        <h3>Intended Outcome</h3>
+        <ul>
+          <li>Simplified, queryable ontologies for production chatbots</li>
+          <li>Faster SPARQL generation and execution</li>
+          <li>Deployable agentic AI solutions</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>Prior Knowledge</h3>
+        <p>Semantic web technologies (SPARQL, OWL, RDF), knowledge graphs, and ontology design patterns.</p>
+      </div>
+
+      <div class="section">
+        <h3>What Students Gain</h3>
+        <ul>
+          <li>Work with real-world enterprise knowledge graphs serving 200+ global customers</li>
+          <li>Hands-on expertise in semantic AI and ontology optimisation</li>
+          <li>Experience deploying production-grade agentic AI</li>
+        </ul>
+      </div>
+
+      <details>
+        <summary>Show full challenge</summary>
+        <div class="details-body">
+          <div class="section">
+            <h3>Full Description</h3>
+            <p>LLMs generate SPARQL queries against knowledge graphs but struggle with irrelevant schema noise. Ontology subsetting — including only the classes and properties actually instantiated in the knowledge graph — reduces the token load and can improve the quality of results.</p>
+            <p style="margin-top: 8px;">Complex ontologies like CIM (the electrical grid standard) contain more than 900 classes and 5,500 properties, creating excessive token overhead for LLMs. Organisations need methods to make ontologies "LLM-friendly" without sacrificing precision, so that agentic AI solutions can be deployed within days rather than quarters.</p>
+            <p style="margin-top: 8px;">Key objectives: reduce massive schemas to actively-used terms only; improve LLM accuracy in generating correct queries; and remove redundant definitions and unused enumerations.</p>
+          </div>
+
+          <div class="section">
+            <h3>Data &amp; Resources</h3>
+            <ul>
+              <li><strong>Dataset:</strong> STATNETT (Norwegian grid operator) — 100+ named graphs, largest containing ~2 billion statements</li>
+              <li><strong>Stack:</strong> GraphDB, SPARQL, OWL RL reasoning, GeoSPARQL, timeseries integration</li>
+              <li><strong>Live demo:</strong> <a class="website-link" href="https://cim.ontotext.com/chat/" target="_blank" rel="noopener">CIMOn Grid Semantic Digital Twin chatbot ↗</a></li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>Company</h3>
+            <a class="website-link" href="https://www.graphwise.ai" target="_blank" rel="noopener">graphwise.ai ↗</a>
+          </div>
+
+          <div class="contact">
+            <div><strong>Robert David</strong> — Graphwise</div>
+            <div><a href="mailto:info@graphwise.ai">info@graphwise.ai</a></div>
+          </div>
+        </div>
+      </details>
+    </article>
+
   </div>
 </main>
 
 <footer class="page-footer">
-  ESSAI 2026 · Industry Challenges — for participating students
+  <div class="sponsor-strip">
+    <span class="sponsor-label">Hosted by</span>
+    <img src="assets/tu-wien.png" alt="TU Wien" />
+  </div>
+  <div class="footer-note">ESSAI 2026 · Industry Challenges — for participating students</div>
 </footer>
 
 <script>
