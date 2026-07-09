@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "essai-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-c", "import http.server as h, socketserver as s, functools as f; s.TCPServer(('',8765), f.partial(h.SimpleHTTPRequestHandler, directory='/Users/arianalorencz/Documents/Organisatorisches TU/essai2026')).serve_forever()"],
+      "port": 8765
+    }
+  ]
+}

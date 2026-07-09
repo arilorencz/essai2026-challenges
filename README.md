@@ -12,6 +12,7 @@ A static microsite that displays the partner industry challenges for the ESSAI 2
 - **SAP** — Business process simulation (Signavio)
 - **Algoryx & cleAIr** — Physical AI, multi-agent systems, AI governance (WASP)
 - **Graphwise** — Hybrid AI, knowledge graphs, ontology optimisation for LLMs
+- **Bosch** — Electronics design, industrial AI, visual query answering & netlist generation
 
 ## Logos
 
