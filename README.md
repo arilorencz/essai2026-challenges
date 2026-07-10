@@ -13,6 +13,7 @@ A static microsite that displays the partner industry challenges for the ESSAI 2
 - **Algoryx & cleAIr** — Physical AI, multi-agent systems, AI governance (WASP)
 - **Graphwise** — Hybrid AI, knowledge graphs, ontology optimisation for LLMs
 - **Bosch** — Electronics design, industrial AI, visual query answering & netlist generation
+- **Bosch** — Context-enriched tabular foundation models for industrial process optimisation
 
 ## Logos
 
